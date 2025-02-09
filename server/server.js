@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql2 = require('mysql');
+const mysql = require('mysql');
 const cors = require('cors');
 const { default: Signup } = require('../client/src/Signup/signup');
 
@@ -8,7 +8,7 @@ app.use(cors());
 
 app.use(express.json());
 
-const db = mysql2.createConnection({
+const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Eugene123789!',

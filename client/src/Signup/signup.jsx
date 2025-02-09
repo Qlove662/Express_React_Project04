@@ -29,9 +29,8 @@ function Signup() {
 
     return (
         <div className="d-flex justify-content-center align-items-center bg-success vh-100">
-            <h1>Sign-up and Save</h1>
             <div className="bg-white p-3 rounded w-25">
-                <h2>Sign-Up</h2>
+                <h2>Sign-up</h2>
                 <form action="" onSubmit={handleSubmit}>
                 <div className='mb-3'>
                         <label htmlFor="name"><strong>Name</strong></label>

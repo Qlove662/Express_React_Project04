@@ -17,7 +17,7 @@ function Login () {
             event.preventDefault()
             setErrors(validation(values));
             if(errors.email === "" && errors.password === ""){
-                axios.post('http://localhost:3002/login',{values})
+                axios.post('http://localhost:3002/home',{values})
                 .then(res => {
                     if(res.data === "Success"){
                         navigate('/home');
@@ -32,9 +32,8 @@ function Login () {
 
     return (
         <div className="d-flex justify-content-center align-items-center bg-success vh-100">
-            <h1 >Destanation Newsletter</h1>
             <div className="bg-white p-3 rounded w-25">
-                <h2>Sign-In</h2>
+                <h2>Log-in</h2>
                 <form action="" onSubmit={handleSubmit}>
                     <div className='mb-3'>
                         <label htmlFor="email"><strong>Email</strong></label>
