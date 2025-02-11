@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import validation from '../LoginValidation/LoginValidation'
+//import validation from '../LoginValidation/LoginValidation'
 import axios from 'axios'
 function Login () {
       const [values, setValues] = useState({
@@ -15,9 +15,10 @@ function Login () {
         }
         const handleSubmit =(event) => {
             event.preventDefault()
-            setErrors(validation(values));
-            if(errors.email === "" && errors.password === ""){
-                axios.post('http://localhost:3002/home',{values})
+            //setErrors(validation(values));
+            //if(errors.email === "" && errors.password === ""){
+            console.log (values)
+                axios.get('http://localhost:3002/login',{values})
                 .then(res => {
                     if(res.data === "Success"){
                         navigate('/home');
@@ -25,9 +26,10 @@ function Login () {
                         alert('No records found');
                     }
         
-            })
-                .catch(err => console.log(err));
             }
+        )
+                .catch(err => console.log(err));
+            //}
         }
 
     return (
