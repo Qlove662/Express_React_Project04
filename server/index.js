@@ -24,14 +24,18 @@ db.connect ((err)=> {
   })
 
 app.post('/signup', (req, res) => {
-    const sql = "INSERT INTO users ('name', 'email', 'password') VALUES (?)";
+    const sql = "INSERT INTO users (name, email, password) VALUES (?)";
     const values = [req.body.name, req.body.email, req.body.password]
-    console.log (req.body.name, req.body.email, req.body.password)
+
+    
 
     db.query(sql,[values], (err, data) => {
+        console.log (err)
+
         if (err) {
             return res.json("Error");
         }
+        console.log (data)
         return res.json(data);
     })
 })

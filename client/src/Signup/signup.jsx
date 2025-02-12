@@ -12,18 +12,21 @@ function Signup() {
     const navigate = useNavigate();
     const [errors, setErrors] = useState({})
     const handleInput = (event) => {
-        setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+        setValues(prev => ({...prev, [event.target.name]: event.target.value}))
     }
     const handleSubmit =(event) => {
         event.preventDefault()
-        setErrors(validation(values));
-        if(errors.name === "" && errors.email === "" && errors.password === ""){
-            axios.post('http://localhost:3002/signup',{values})
+        //setErrors(validation(values));
+        console.log (values)
+        //if(errors.name === "" && errors.email === "" && errors.password === ""){
+            console.log ("here")
+            axios.post('http://localhost:3002/signup',values)
             .then(res => {
                 navigate('/');
-        })
-            .catch(err => console.log(err));
         }
+    )
+            .catch(err => console.log(err));
+        //}
 
     }
 
