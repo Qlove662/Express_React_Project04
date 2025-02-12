@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
-//const { default: Signup } = require('../client/src/Signup/signup');
+
 
 const app = express();
 app.use(cors());
@@ -26,12 +26,7 @@ db.connect ((err)=> {
 app.post('/signup', (req, res) => {
     const sql = "INSERT INTO users (name, email, password) VALUES (?)";
     const values = [req.body.name, req.body.email, req.body.password]
-
-    
-
     db.query(sql,[values], (err, data) => {
-        console.log (err)
-
         if (err) {
             return res.json("Error");
         }
@@ -47,11 +42,25 @@ app.get('/login', (req, res) => {
         if (err) {
             return res.json("data");
         }
-        console.log (data)
         if(data.length > 0) {
             return res.json("Login Successful")
         }else {
             return res.json("Invalid Credentials")
+        }
+    })
+})
+app.get('/state', (req, res) => {
+   
+    const sql = "SELECT * FROM state";
+    db.query(sql, (err, data) => {
+        if (err) {
+            return res.json("data");
+        }
+        console.log (data)
+        if(data.length > 0) {
+            return res.send(data)
+        }else {
+            return res.json("No state available")
         }
     })
 })
