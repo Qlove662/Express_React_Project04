@@ -37,12 +37,13 @@ app.post('/signup', (req, res) => {
 })
 app.get('/login', (req, res) => {
    
-    const sql = "SELECT * FROM users WHERE 'email' = ? AND 'password' = ?";
-    db.query(sql,[req.body.email, req.body.password], (err, data) => {
-        console.log (req.body.email, req.body.password)
+    const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    db.query(sql,[req.query.email, req.query.password], (err, data) => {
+        console.log (req.query.email, req.query.password)
         if (err) {
             return res.json("data");
         }
+        console.log (data)
         if(data.length > 0) {
             return res.json("Login Successful")
         }else {

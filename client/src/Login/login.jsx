@@ -7,25 +7,25 @@ function Login () {
             email: '',
             password: ''
         })
-        const navigate = useNavigate
+        const navigate = useNavigate ()
 
         const [errors, setErrors] = useState({})
         const handleInput = (event) => {
-            setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))
+            setValues(prev => ({...prev, [event.target.name]: event.target.value}))
         }
         const handleSubmit =(event) => {
             event.preventDefault()
             //setErrors(validation(values));
             //if(errors.email === "" && errors.password === ""){
             console.log (values)
-                axios.get('http://localhost:3002/login',{values})
+
+                axios.get(`http://localhost:3002/login?email=${values.email}&password=${values.password}`)
                 .then(res => {
-                    if(res.data === "Success"){
+                    if(res.data === "Login Successful"){
                         navigate('/home');
                     }else{
                         alert('No records found');
                     }
-        
             }
         )
                 .catch(err => console.log(err));
